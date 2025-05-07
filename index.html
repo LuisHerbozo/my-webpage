@@ -10,9 +10,256 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
-</head>
-   
 
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+/>
+
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 15px 30px;
+      border-bottom: 1px solid #eee;
+      background-color: white;
+      display: flex;
+      justify-content: flex-start;
+    }
+    nav a {
+      margin-right: 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #2bbbad;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* ===== Home ===== */
+    .main-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .left {
+      flex: 1 1 280px;
+      max-width: 300px;
+    }
+    .right {
+      flex: 2 1 600px;
+    }
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: gray;
+      margin: 5px 0;
+    }
+    .org a {
+      color: #2bbbad;
+      text-decoration: none;
+    }
+    .org a:hover {
+      text-decoration: underline;
+    }
+    .icons a {
+      font-size: 22px;
+      margin-right: 15px;
+      color: #2bbbad;
+      text-decoration: none;
+    }
+    .icons a:hover {
+      color: #1e8d85;
+    }
+    .section-block {
+      margin-top: 25px;
+    }
+    .section-block h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+    ul.plain {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.plain li::before {
+      content: "• ";
+      color: #2bbbad;
+    }
+
+    /* ===== News ===== */
+/* News Section (append to your CSS) */
+.news-search {
+  position: relative;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+.news-search input[type="search"] {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.news-search .fa-search {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.news-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.news-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.news-content {
+  padding: 1rem;
+  flex: 1;
+}
+.news-content time {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.news-content h3 {
+  margin: 0.3rem 0;
+  font-weight: 600;
+}
+.news-content p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+.news-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #666;
+}
+.news-footer .views,
+.news-footer .heart {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.news-footer .views:hover,
+.news-footer .heart:hover {
+  transform: scale(1.1);
+}
+.news-footer .heart.liked {
+  color: #d32f2f;
+}
+
+
+/* Publications */
+.pub-group {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Year column */
+.pub-year {
+  flex: 0 0 60px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #555;
+}
+
+/* List of entries */
+.pub-list {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 1rem;
+}
+
+.pub-list li {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* PDF link */
+.pub-pdf {
+  margin-left: 0.4rem;
+  text-decoration: none;
+  color: #2bbbad;
+  font-weight: 600;
+}
+
+.pub-pdf:hover {
+  text-decoration: underline;
+}
+
+.pub-meta {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  user-select: none;
+}
+
+.pub-meta span {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pub-meta span:hover {
+  transform: scale(1.1);
+  color: #d32f2f;
+}
+
+.heart.liked {
+  color: #d32f2f;
+}
+  </style>
+</head>
+  
 <body>
 
   <header>
@@ -642,265 +889,20 @@
 </section>
 
 
-    <!-- CV -->
+ <!-- CV -->
     <section id="cv" class="section hidden">
       <h2>Curriculum Vitae</h2>
       <p>Download Luis' full CV or view academic timeline here.</p>
     </section>
   </div>
 
-</body>
-</html>
-
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #fff;
-      color: #222;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      padding: 15px 30px;
-      border-bottom: 1px solid #eee;
-      background-color: white;
-      display: flex;
-      justify-content: flex-start;
-    }
-    nav a {
-      margin-right: 20px;
-      color: #333;
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    nav a:hover {
-      color: #2bbbad;
-    }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 30px;
-    }
-    .section {
-      margin-top: 30px;
-    }
-    .hidden {
-      display: none;
-    }
-
-    /* ===== Home ===== */
-    .main-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-    .left {
-      flex: 1 1 280px;
-      max-width: 300px;
-    }
-    .right {
-      flex: 2 1 600px;
-    }
-    .profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      color: gray;
-      margin: 5px 0;
-    }
-    .org a {
-      color: #2bbbad;
-      text-decoration: none;
-    }
-    .org a:hover {
-      text-decoration: underline;
-    }
-    .icons a {
-      font-size: 22px;
-      margin-right: 15px;
-      color: #2bbbad;
-      text-decoration: none;
-    }
-    .icons a:hover {
-      color: #1e8d85;
-    }
-    .section-block {
-      margin-top: 25px;
-    }
-    .section-block h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 4px;
-    }
-    ul.plain {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul.plain li::before {
-      content: "• ";
-      color: #2bbbad;
-    }
-
-    /* ===== News ===== */
-/* News Section (append to your CSS) */
-.news-search {
-  position: relative;
-  max-width: 400px;
-  margin-bottom: 1.5rem;
-}
-.news-search input[type="search"] {
-  width: 100%;
-  padding: 0.6rem 2.5rem 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.news-search .fa-search {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.news-item {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-}
-.news-thumb {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-.news-content {
-  padding: 1rem;
-  flex: 1;
-}
-.news-content time {
-  display: block;
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
-.news-content h3 {
-  margin: 0.3rem 0;
-  font-weight: 600;
-}
-.news-content p {
-  font-size: 0.95rem;
-  color: #333;
-  margin-top: 0.5rem;
-}
-.news-footer {
-  display: flex;
-  gap: 1rem;
-  padding: 0.8rem 1rem;
-  border-top: 1px solid #eee;
-  font-size: 0.9rem;
-  color: #666;
-}
-.news-footer .views,
-.news-footer .heart {
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s;
-}
-.news-footer .views:hover,
-.news-footer .heart:hover {
-  transform: scale(1.1);
-}
-.news-footer .heart.liked {
-  color: #d32f2f;
-}
-
-
-/* Publications */
-.pub-group {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-}
-
-/* Year column */
-.pub-year {
-  flex: 0 0 60px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  color: #555;
-}
-
-/* List of entries */
-.pub-list {
-  flex: 1;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 0 1rem;
-}
-
-.pub-list li {
-  margin-bottom: 1rem;
-  line-height: 1.4;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* PDF link */
-.pub-pdf {
-  margin-left: 0.4rem;
-  text-decoration: none;
-  color: #2bbbad;
-  font-weight: 600;
-}
-
-.pub-pdf:hover {
-  text-decoration: underline;
-}
-
-.pub-meta {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 0.9rem;
-  color: #666;
-  user-select: none;
-}
-
-.pub-meta span {
-  margin-left: 10px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.pub-meta span:hover {
-  transform: scale(1.1);
-  color: #d32f2f;
-}
-
-.heart.liked {
-  color: #d32f2f;
-}
-
-
-function showSection(id) {
+   <script>
+    function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
     }
 
-function filterNews() {
+    function filterNews() {
       const q = document.getElementById('newsSearchInput').value.toLowerCase().trim();
       document.querySelectorAll('.news-item').forEach(item => {
         const t = item.dataset.title.toLowerCase();
@@ -908,33 +910,37 @@ function filterNews() {
         item.style.display = t.includes(q) || s.includes(q) ? '' : 'none';
       });
     }
-    // Show Home on initial load
-    showSection('home');
 
-function toggleLike(el) {
-  const countSpan = el.querySelector(".like-count");
-  let count = parseInt(countSpan.textContent, 10);
+    function toggleLike(el) {
+      const countSpan = el.querySelector(".like-count");
+      let count = parseInt(countSpan.textContent, 10);
 
-  if (el.classList.contains("liked")) {
-    el.classList.remove("liked");
-    count--;
-  } else {
-    el.classList.add("liked");
-    count++;
-  }
+      if (el.classList.contains("liked")) {
+        el.classList.remove("liked");
+        count--;
+      } else {
+        el.classList.add("liked");
+        count++;
+      }
 
-  countSpan.textContent = count;
-}
+      countSpan.textContent = count;
+    }
 
-function incrementView(linkEl) {
-  const parent = linkEl.parentElement;
-  const viewSpan = parent.querySelector(".view-count");
-  let count = parseInt(viewSpan.textContent, 10);
-  count++;
-  viewSpan.textContent = count;
-}
+    function incrementView(linkEl) {
+      const parent = linkEl.parentElement;
+      const viewSpan = parent.querySelector(".view-count");
+      let count = parseInt(viewSpan.textContent, 10);
+      count++;
+      viewSpan.textContent = count;
+    }
 
-// ensure clicking the link also increments views (Check if this is neccesary)
-document.querySelectorAll(".news-content a").forEach(a =>
-  a.addEventListener("click", () => incrementView(a))
-);
+    document.addEventListener("DOMContentLoaded", () => {
+      showSection('home');
+      document.querySelectorAll(".news-content a").forEach(a =>
+        a.addEventListener("click", () => incrementView(a))
+      );
+    });
+  </script>
+          
+</body>
+</html>
