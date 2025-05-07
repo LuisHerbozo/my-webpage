@@ -1,0 +1,940 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luis Herbozo – Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Font Awesome for icons -->
+<!--   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+   --> 
+
+<body>
+
+  <header>
+    <nav>
+      <a onclick="showSection('home')">Home</a>
+      <a onclick="showSection('news')">News</a>
+<!--       <a onclick="showSection('skills')">Skills</a> -->
+<!--       <a onclick="showSection('projects')">Projects</a> -->
+      <a onclick="showSection('publications')">Publications</a>
+      <a onclick="showSection('cv')"> </a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Home -->
+    <section id="home" class="section">
+      <div class="main-grid">
+        <div class="left">
+          <img
+            src="https://i.ibb.co/8gWBDdtV/IMG-6709.jpg"
+            alt="Luis"
+            class="profile-pic"
+          />
+          <h1>Luis Fernando <br /> Herbozo Contreras</h1>
+          <p class="subtitle">PhD Candidate</p>
+          <p class="org">
+            <a href="#">School of Biomedical Engineering</a><br />
+            <a href="#">NeuroSyd</a><br />
+            <a href="#">The University of Sydney</a>
+          </p>
+  
+          <div class="icons">
+  <a
+    href="mailto:luisfherbozoc@gmail.com"
+    title="Email"
+    target="_blank"
+  >
+    <i class="fa fa-envelope"></i>
+  </a>
+  <a
+    href="https://www.linkedin.com/in/luis-herbozo-c/"
+    title="LinkedIn"
+    target="_blank"
+  >
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a
+    href="https://github.com/NeuroSyd/"
+    title="GitHub"
+    target="_blank"
+  >
+    <i class="fab fa-github"></i>
+  </a>
+  <a
+    href="https://scholar.google.com.au/citations?user=ojt870MAAAAJ&hl=en"
+    title="Google Scholar"
+    target="_blank"
+  >
+    <i class="ai ai-google-scholar ai-fw"></i>
+  </a>
+</div>
+        </div>
+        <div class="right">
+          <h2>About me</h2>
+          <p style="text-align: justify;">
+            Hi, I’m <strong>Luis Fernando Herbozo Contreras</strong>, a
+            third-year PhD candidate in Computer and Biomedical Engineering at
+            <a href="#">The University of Sydney</a>. My research focuses on
+            developing low-power, bio-inspired AI algorithms for real-world
+            applications, particularly in healthcare. I'm passionate about
+            advancing edge AI, neuromorphic computing, and privacy-aware
+            machine learning for personalized medical solutions. I hold a
+            Bachelor's in Biomedical Engineering from Tecnologico de Monterrey
+            (ITESM), where I graduated Magna Cum Laude. Outside academia, I
+            enjoy swing music and dance (Lindy Hop, Charleston, Collegiate
+            Shag), and I’ve recently started learning the saxophone.
+          </p>
+          <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+            <div style="flex: 1.5; min-width: 280px;">
+              <div class="section-block">
+                <h3>Education</h3>
+                <p>
+                  <i class="fas fa-graduation-cap" style="margin-right: 8px; color: #444;"></i>
+                  <strong>Doctor of Philosophy (PhD) in Engineering</strong><br />
+                  The University of Sydney<br />
+                  Faculty of Engineering Research Scholar<br />
+                  <em>Oct 2022 – Sep 2025</em>
+                </p>
+                <p>
+                  <i class="fas fa-graduation-cap" style="margin-right: 8px; color: #444;"></i>
+                  <strong>Bachelor of Biomedical Engineering</strong><br />
+                  Tecnologico de Monterrey (ITESM)<br />
+                  Magna Cum Laude, Honors<br />
+                  <em>Jan 2017 – Jun 2022</em>
+                </p>
+              </div>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+              <div class="section-block">
+                <h3>Interests</h3>
+                <ul class="plain">
+                  <li>Low-Power Edge Computing</li>
+                  <li>Neuromorphic Computing</li>
+                  <li>Privacy and Secure AI</li>
+                  <li>Healthcare</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- News -->
+<section id="news" class="section hidden">
+  <h2>News</h2>
+
+  <div class="news-search">
+    <input
+      type="search"
+      id="newsSearchInput"
+      placeholder="Search news…"
+      oninput="filterNews()"
+    />
+    <i class="fa fa-search"></i>
+  </div>
+  
+  <div class="news-grid">
+        <!-- 2025 -->
+    <!-- Card: Liquid-Dendrite SNN -->
+    <article class="news-item" data-title="Liquid-Dendrite Spiking Neural Network">
+      <img
+        src="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1/F1.large.jpg"
+        alt="Figure 1 of Liquid-Dendrite SNN"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-02-12">Feb 12, 2025</time>
+        <h3>
+          <a
+            href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.
+          </a>
+        </h3>
+        <p>
+            Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.        </p>
+      </div>
+      <div class="news-footer">
+       <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+    <!-- 2025 -->
+    <!-- Card: Liquid-Dendrite SNN -->
+    <article class="news-item" data-title="Liquid-Dendrite Spiking Neural Network">
+      <img
+        src="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1/F1.large.jpg"
+        alt="Figure 1 of Liquid-Dendrite SNN"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-02-12">Feb 12, 2025</time>
+        <h3>
+          <a
+            href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            Liquid‑Dendrite Spiking Neural Network for Edge Seizure Detection
+          </a>
+        </h3>
+        <p>
+          A 130 K‑parameter, 535 KB spiking neural network leveraging dendritic and liquid‑time‑constant neurons for on‑device epileptic seizure detection :contentReference[oaicite:0]{index=0}.
+        </p>
+      </div>
+      <div class="news-footer">
+       <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+
+    <!-- Card: Efficient μ-Training -->
+    <article class="news-item" data-title="Efficient and Secure μ-Training">
+      <img
+        src="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1/F1.large.jpg"
+        alt="Figure 1 of Efficient μ-Training"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-01-30">Jan 30, 2025</time>
+        <h3>
+          <a
+            href="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            Efficient & Secure μ‑Training and μ‑Fine‑Tuning for TinyML
+          </a>
+        </h3>
+        <p>
+          Edge‑based continual μ‑training methods for personalized TinyML optimization at the edge :contentReference[oaicite:1]{index=1}.
+        </p>
+      </div>
+      <div class="news-footer">
+          <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+
+    <!-- Card: Privacy-Aware ML -->
+    <article class="news-item" data-title="Advancing Privacy-Aware Machine Learning">
+      <img
+        src="https://i.ibb.co/placeholder.png"
+        alt="Placeholder for Privacy-Aware ML"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-01-15">Jan 15, 2025</time>
+        <h3>
+          <a href="#" onclick="incrementView(this)" target="_blank">
+            Advancing Privacy‑Aware ML via Continual μ‑Training
+          </a>
+        </h3>
+        <p>
+          Framework for continual μ‑training to fine‑tune large models on sensitive data at the edge :contentReference[oaicite:2]{index=2}.
+        </p>
+      </div>
+      <div class="news-footer">
+           <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+
+    <!-- Card: KAN–EEG -->
+    <article class="news-item" data-title="KAN–EEG Seizure Detection System">
+      <img
+        src="https://royalsocietypublishing.org/content/rsos/12/3/240999/F1.large.jpg"
+        alt="Figure 1 of KAN–EEG"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-03-01">Mar 1, 2025</time>
+        <h3>
+          <a
+            href="https://royalsocietypublishing.org/doi/10.1098/rsos.240999"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            KAN–EEG: Seizure Detection without Backbone‑MLP
+          </a>
+        </h3>
+        <p>
+          Introduction of K‑Arnold networks replacing backbone MLPs for efficient on‑device seizure detection :contentReference[oaicite:3]{index=3}.
+        </p>
+      </div>
+      <div class="news-footer">
+  <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+
+    <!-- 2024: Neuromorphic Neuromodulation -->
+    <article class="news-item" data-title="Neuromorphic Neuromodulation">
+      <img
+        src="https://academic.oup.com/pnasnexus/article/3/11/pgae488/7391176/F1.large.jpg"
+        alt="Figure 1 of Neuromorphic Neuromodulation"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2024-11-15">Nov 15, 2024</time>
+        <h3>
+          <a
+            href="https://academic.oup.com/pnasnexus/article/3/11/pgae488/7391176"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            Neuromorphic Neuromodulation for Closed‑Loop Neurostimulation
+          </a>
+        </h3>
+        <p>
+          Proposes next‑generation closed‑loop neurostimulation using neuromorphic hardware :contentReference[oaicite:4]{index=4}.
+        </p>
+      </div>
+      <div class="news-footer">
+   <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+
+    <!-- 2024: Biological Plausible Algorithm -->
+    <article class="news-item" data-title="Biologically Plausible Algorithm for Seizure Detection">
+      <img
+        src="https://pubs.aip.org/aip/aml/article/2/2/026114/3286891/figures/1/medium.png"
+        alt="Figure 1 of Biological Algorithm"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2024-06-10">Jun 10, 2024</time>
+        <h3>
+          <a
+            href="https://pubs.aip.org/aip/aml/article/2/2/026114/3286891"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            Biologically Plausible Algorithm for Seizure Detection
+          </a>
+        </h3>
+        <p>
+          Edge‑ready algorithm bridging biology and AI for electroceutical applications :contentReference[oaicite:5]{index=5}.
+        </p>
+      </div>
+      <div class="news-footer">
+        <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+      </div>
+    </article>
+    
+    <!-- Efficient Edge-AI ECG Models (2024) -->
+<article class="news-item" data-title="Efficient Edge-AI Models for ECG">
+  <img
+    src="https://link.springer.com/content/figures/10.1007/s12265-024-10504-y/figures/1"
+    alt="Figure 1 of Efficient Edge-AI ECG Models"
+    class="news-thumb"
+  />
+  <div class="news-content">
+    <time datetime="2024-04-10">Apr 10, 2024</time>
+    <h3>
+      <a
+        href="https://link.springer.com/article/10.1007/s12265-024-10504-y"
+        target="_blank"
+        onclick="incrementView(this)"
+      >
+        Efficient Edge‑AI Models for Robust ECG Abnormality Detection
+      </a>
+    </h3>
+    <p>
+      Presents resource‑constrained hardware implementations of bio‑inspired shallow SNNs for ECG abnormality detection.
+    </p>
+  </div>
+  <div class="news-footer">
+   <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+  </div>
+</article>
+
+<!-- S4D-ECG Model (2024) -->
+<article class="news-item" data-title="S4D-ECG Model">
+  <img
+    src="https://link.springer.com/article/10.1007/s13239-024-00716-3/figures/1"
+    alt="Figure 1 of S4D-ECG Model"
+    target="_blank"
+    class="news-thumb"
+  />
+  <div class="news-content">
+    <time datetime="2024-03-20">Mar 20, 2024</time>
+    <h3>
+      <a
+        href="https://link.springer.com/article/10.1007/s13239-024-00716-3"
+        target="_blank"
+        onclick="incrementView(this)"
+      >
+        S4D‑ECG: A Shallow State‑of‑the‑Art Model for Cardiac Classification
+      </a>
+    </h3>
+    <p>
+      Introduces S4D‑ECG, combining sparse spiking layers for state‑of‑the‑art ECG classification on edge devices.
+    </p>
+  </div>
+  <div class="news-footer">
+   <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+  </div>
+</article>
+
+<!-- Abnormality Detection via K-A Networks (medRxiv 2024) -->
+<article class="news-item" data-title="Abnormality Detection in Time-Series Bio-Signals">
+  <img
+    src="https://www.medrxiv.org/content/10.1101/2024.06.04.24308428v1/F1.large.jpg"
+    alt="Figure 1 of Abnormality Detection Paper"
+    class="news-thumb"
+  />
+  <div class="news-content">
+    <time datetime="2024-06-04">Jun 4, 2024</time>
+    <h3>
+      <a
+        href="https://www.medrxiv.org/content/10.1101/2024.06.04.24308428v1"
+        target="_blank"
+        onclick="incrementView(this)"
+      >
+        Abnormality Detection in Time‑Series Bio‑Signals Using K‑A Networks
+      </a>
+    </h3>
+    <p>
+      Uses Kolmogorov–Arnold networks to detect anomalies in time‑series biosignals on resource‑limited hardware.
+    </p>
+  </div>
+  <div class="news-footer">
+  <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+  </div>
+</article>
+
+<!-- Metaplastic-EEG (medRxiv 2024) -->
+<article class="news-item" data-title="Metaplastic-EEG: Continuous Training">
+  <img
+    src="https://www.medrxiv.org/content/10.1101/2024.05.29.24308178v1/F1.large.jpg"
+    alt="Figure 1 of Metaplastic-EEG"
+    class="news-thumb"
+  />
+  <div class="news-content">
+    <time datetime="2024-05-29">May 29, 2024</time>
+    <h3>
+      <a
+        href="https://www.medrxiv.org/content/10.1101/2024.05.29.24308178v1"
+        target="_blank"
+        onclick="incrementView(this)"
+      >
+        Metaplastic‑EEG: Continuous Training on Brain Signals
+      </a>
+    </h3>
+    <p>
+      Demonstrates a metaplastic SNN approach for continuous on‑device training with EEG inputs.
+    </p>
+  </div>
+  <div class="news-footer">
+     <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+  </div>
+</article>
+
+<!-- 2023: Generalization Challenges in ECG Deep Learning -->
+<article class="news-item" data-title="Generalization Challenges in ECG Deep Learning">
+  <img
+    src="https://assets.futuremedicine.com/content/dam/futuremedicine/futurecardiology/20/4/figures/futurecardiol-20-4-209-g001.jpg"
+    alt="Figure 1 of Generalization Challenges Paper"
+    class="news-thumb"
+  />
+  <div class="news-content">
+    <time datetime="2024-02-15">Feb 15, 2024</time>
+    <h3>
+      <a
+        href="https://www.futuremedicine.com/doi/full/10.2217/fca-2023-0034"
+        target="_blank"
+        onclick="incrementView(this)"
+      >
+        Generalization Challenges in ECG Deep Learning
+      </a>
+    </h3>
+    <p>
+      Analyzes dataset biases and attention mechanisms affecting ECG DL model generalization.
+    </p>
+  </div>
+  <div class="news-footer">
+   <li>
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+</li>
+  </div>
+</article>
+
+    <!-- Additional 2024, 2023, etc… -->
+    <!-- Repeat similarly for each publication year, pulling figure1 images when available -->
+  </div>
+</section>
+
+
+    <!-- Skills -->
+    <section id="skills" class="section hidden">
+      <h2>Skills</h2>
+      <ul>
+        <li>fMRI analysis</li>
+        <li>Python, MATLAB, R</li>
+        <li>Signal processing</li>
+        <li>Neuroscience data visualization</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section hidden">
+      <h2>Projects</h2>
+      <p>Details about Luis' research projects will be shown here.</p>
+    </section>
+
+  <!-- Publications -->
+<section id="publications" class="section hidden">
+  <h2>Publications</h2>
+
+  <!-- 2025 Publications -->
+  <div class="pub-group">
+    <h3 class="pub-year">2025</h3>
+    <ul class="pub-list">
+      <li>
+        L.F. Herbozo Contreras, L. Yu, Z. Huang, A. Nikpour, O. Kavehei,
+        “Liquid-Dendrite Spiking Neural Network for Edge Devices: A 130 K-Parameter, 535 KB Model for Time-Domain Epileptic Seizure Detection,”
+        <em>medRxiv</em>, 2025.
+        <a href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        Z. Huang, L. Yu, L.F. Herbozo Contreras, O. Kavehei,
+        “Efficient and Secure μ-Training and μ-Fine-Tuning for TinyML Optimization and Personalization at the Edge,”
+        <em>medRxiv</em>, 2025.
+        <a href="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        Z. Huang, L. Yu, L.F. Herbozo Contreras, J.K. Eshraghian, N.D. Truong, O. Kavehei,
+        “Advancing Privacy-Aware Machine Learning on Sensitive Data via Edge-Based Continual μ-Training for Personalized Large Models,”
+        <em>Machine Learning: Science and Technology</em>, 2025.
+      </li>
+      <li>
+        L.F. Herbozo Contreras, J. Cui, L. Yu, Z. Huang, A. Nikpour, O. Kavehei,
+        “KAN–EEG: Towards Replacing Backbone–MLP for an Effective Seizure Detection System,”
+        <em>Royal Society Open Science</em>, 12(3): 240999, 2025.
+        <a href="https://royalsocietypublishing.org/doi/10.1098/rsos.240999" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2024 Publications -->
+  <div class="pub-group">
+    <h3 class="pub-year">2024</h3>
+    <ul class="pub-list">
+      <li>
+        Z. Huang, L.F. Herbozo Contreras, W.H. Leung, L. Yu, N.D. Truong, O. Kavehei,
+        “Efficient Edge-AI Models for Robust ECG Abnormality Detection on Resource-Constrained Hardware,”
+        <em>Journal of Cardiovascular Translational Research</em>, 17(4): 879–892, 2024.
+        <a href="https://link.springer.com/article/10.1007/s12265-024-10504-y" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        Z. Huang, L.F. Herbozo Contreras, L. Yu, N.D. Truong, A. Nikpour, O. Kavehei,
+        “S4D-ECG: A Shallow State-of-the-Art Model for Cardiac Abnormality Classification,”
+        <em>Cardiovascular Engineering and Technology</em>, 15(3): 305–316, 2024.
+        <a href="https://link.springer.com/article/10.1007/s13239-024-00716-3" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        L.F. Herbozo Contreras, N.D. Truong, J.K. Eshraghian, Z. Xu, Z. Huang, A. Nikpour, O. Kavehei,
+        “Neuromorphic Neuromodulation: Towards the Next Generation of Closed-Loop Neurostimulation,”
+        <em>PNAS Nexus</em>, 3(11): pgae488, 2024.
+        <a href="https://academic.oup.com/pnasnexus/article/3/11/pgae488/7391176" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        L.F. Herbozo Contreras, Z. Huang, L. Yu, A. Nikpour, O. Kavehei,
+        “Biological Plausible Algorithm for Seizure Detection: Toward AI-Enabled Electroceuticals at the Edge,”
+        <em>APL Machine Learning</em>, 2(2): 026114, 2024.
+        <a href="https://pubs.aip.org/aip/aml/article/2/2/026114/3286891/Biological-plausible-algorithm-for-seizure" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        Z. Huang, W.H. Leung, L. Yu, L.F. Herbozo Contreras, Z. Zhang, N.D. Truong, A. Nikpour, O. Kavehei,
+        “On-Device Edge-Learning for Cardiac Abnormality Detection Using a Bio-Inspired and Spiking Shallow Network,”
+        <em>APL Machine Learning</em>, 2(2), 2024.
+      </li>
+      <li>
+        Z. Huang, J. Cui, L. Yu, L.F. Herbozo Contreras, O. Kavehei,
+        “Abnormality Detection in Time-Series Bio-Signals Using Kolmogorov-Arnold Networks for Resource-Constrained Devices,”
+        <em>medRxiv</em>, 2024.
+        <a href="https://www.medrxiv.org/content/10.1101/2024.06.04.24308428v1" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+      <li>
+        I. Aguilar, T. Bersani-Veroni, L.F. Herbozo Contreras, A. Nikpour, D. Querlioz, O. Kavehei,
+        “Metaplastic-EEG: Continuous Training on Brain-Signals,”
+        <em>medRxiv</em>, 2024.
+        <a href="https://www.medrxiv.org/content/10.1101/2024.05.29.24308178v1" class="pub-pdf" target="_blank">[pdf]</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2023 Publications -->
+  <div class="pub-group">
+    <h3 class="pub-year">2023</h3>
+    <ul class="pub-list">
+      <li>
+        Z. Huang, S. MacLachlan, L. Yu, L.F. Herbozo Contreras, N.D. Truong, O. Kavehei,
+        “Generalization Challenges in ECG Deep Learning: Insights from Dataset Characteristics and Attention Mechanism,”
+        <em>Future Cardiology</em>, 20(4): 209–220, 2024.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+    <!-- CV -->
+    <section id="cv" class="section hidden">
+      <h2>Curriculum Vitae</h2>
+      <p>Download Luis' full CV or view academic timeline here.</p>
+    </section>
+  </div>
+
+</body>
+</html>
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 15px 30px;
+      border-bottom: 1px solid #eee;
+      background-color: white;
+      display: flex;
+      justify-content: flex-start;
+    }
+    nav a {
+      margin-right: 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #2bbbad;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* ===== Home ===== */
+    .main-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .left {
+      flex: 1 1 280px;
+      max-width: 300px;
+    }
+    .right {
+      flex: 2 1 600px;
+    }
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: gray;
+      margin: 5px 0;
+    }
+    .org a {
+      color: #2bbbad;
+      text-decoration: none;
+    }
+    .org a:hover {
+      text-decoration: underline;
+    }
+    .icons a {
+      font-size: 22px;
+      margin-right: 15px;
+      color: #2bbbad;
+      text-decoration: none;
+    }
+    .icons a:hover {
+      color: #1e8d85;
+    }
+    .section-block {
+      margin-top: 25px;
+    }
+    .section-block h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+    ul.plain {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.plain li::before {
+      content: "• ";
+      color: #2bbbad;
+    }
+
+    /* ===== News ===== */
+/* News Section (append to your CSS) */
+.news-search {
+  position: relative;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+.news-search input[type="search"] {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.news-search .fa-search {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.news-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.news-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.news-content {
+  padding: 1rem;
+  flex: 1;
+}
+.news-content time {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.news-content h3 {
+  margin: 0.3rem 0;
+  font-weight: 600;
+}
+.news-content p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+.news-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #666;
+}
+.news-footer .views,
+.news-footer .heart {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.news-footer .views:hover,
+.news-footer .heart:hover {
+  transform: scale(1.1);
+}
+.news-footer .heart.liked {
+  color: #d32f2f;
+}
+
+
+/* Publications */
+.pub-group {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Year column */
+.pub-year {
+  flex: 0 0 60px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #555;
+}
+
+/* List of entries */
+.pub-list {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 1rem;
+}
+
+.pub-list li {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* PDF link */
+.pub-pdf {
+  margin-left: 0.4rem;
+  text-decoration: none;
+  color: #2bbbad;
+  font-weight: 600;
+}
+
+.pub-pdf:hover {
+  text-decoration: underline;
+}
+
+.pub-meta {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  user-select: none;
+}
+
+.pub-meta span {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pub-meta span:hover {
+  transform: scale(1.1);
+  color: #d32f2f;
+}
+
+.heart.liked {
+  color: #d32f2f;
+}
+
+
+function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+function filterNews() {
+      const q = document.getElementById('newsSearchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.news-item').forEach(item => {
+        const t = item.dataset.title.toLowerCase();
+        const s = item.querySelector('p').textContent.toLowerCase();
+        item.style.display = t.includes(q) || s.includes(q) ? '' : 'none';
+      });
+    }
+    // Show Home on initial load
+    showSection('home');
+
+function toggleLike(el) {
+  const countSpan = el.querySelector(".like-count");
+  let count = parseInt(countSpan.textContent, 10);
+
+  if (el.classList.contains("liked")) {
+    el.classList.remove("liked");
+    count--;
+  } else {
+    el.classList.add("liked");
+    count++;
+  }
+
+  countSpan.textContent = count;
+}
+
+function incrementView(linkEl) {
+  const parent = linkEl.parentElement;
+  const viewSpan = parent.querySelector(".view-count");
+  let count = parseInt(viewSpan.textContent, 10);
+  count++;
+  viewSpan.textContent = count;
+}
+
+// ensure clicking the link also increments views (Check if this is neccesary)
+document.querySelectorAll(".news-content a").forEach(a =>
+  a.addEventListener("click", () => incrementView(a))
+);
