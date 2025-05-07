@@ -900,13 +900,13 @@
     </section>
   </div>
 
-   <script>
-    function showSection(id) {
+<script>
+function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
     }
 
-    function filterNews() {
+function filterNews() {
       const q = document.getElementById('newsSearchInput').value.toLowerCase().trim();
       document.querySelectorAll('.news-item').forEach(item => {
         const t = item.dataset.title.toLowerCase();
@@ -914,36 +914,36 @@
         item.style.display = t.includes(q) || s.includes(q) ? '' : 'none';
       });
     }
+    // Show Home on initial load
+    showSection('home');
 
-    function toggleLike(el) {
-      const countSpan = el.querySelector(".like-count");
-      let count = parseInt(countSpan.textContent, 10);
+function toggleLike(el) {
+  const countSpan = el.querySelector(".like-count");
+  let count = parseInt(countSpan.textContent, 10);
 
-      if (el.classList.contains("liked")) {
-        el.classList.remove("liked");
-        count--;
-      } else {
-        el.classList.add("liked");
-        count++;
-      }
+  if (el.classList.contains("liked")) {
+    el.classList.remove("liked");
+    count--;
+  } else {
+    el.classList.add("liked");
+    count++;
+  }
 
-      countSpan.textContent = count;
-    }
+  countSpan.textContent = count;
+}
 
-    function incrementView(linkEl) {
-      const parent = linkEl.parentElement;
-      const viewSpan = parent.querySelector(".view-count");
-      let count = parseInt(viewSpan.textContent, 10);
-      count++;
-      viewSpan.textContent = count;
-    }
+function incrementView(linkEl) {
+  const parent = linkEl.parentElement;
+  const viewSpan = parent.querySelector(".view-count");
+  let count = parseInt(viewSpan.textContent, 10);
+  count++;
+  viewSpan.textContent = count;
+}
 
-    document.addEventListener("DOMContentLoaded", () => {
-      showSection('home');
-      document.querySelectorAll(".news-content a").forEach(a =>
-        a.addEventListener("click", () => incrementView(a))
-      );
-    });
+// ensure clicking the link also increments views (Check if this is neccesary)
+document.querySelectorAll(".news-content a").forEach(a =>
+  a.addEventListener("click", () => incrementView(a))
+);
   </script>
           
 </body>
