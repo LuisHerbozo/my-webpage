@@ -293,6 +293,28 @@
   color: #555;
   margin-bottom: 0.5rem;
 }
+.news-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+.news-meta-row time {
+  margin-bottom: 0;
+}
+.news-meta-row .heart {
+  margin-left: auto;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.news-meta-row .heart:hover {
+  transform: scale(1.08);
+}
+.news-meta-row .heart.liked {
+  color: #d32f2f;
+}
 .news-content h3 {
   margin: 0.3rem 0;
   font-weight: 600;
@@ -318,18 +340,22 @@
   color: #555;
 }
   
-.news-footer .views,
 .news-footer .heart {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s;
 }
-.news-footer .views:hover,
 .news-footer .heart:hover {
   transform: scale(1.1);
 }
+.news-footer .views {
+  display: none;
+}
 .news-footer .heart.liked {
   color: #d32f2f;
+}
+#news .news-footer {
+  display: none;
 }
 
 
@@ -962,7 +988,7 @@
 <!-- Metaplastic-EEG (medRxiv 2024) -->
 <article class="news-item" data-title="Metaplastic-EEG: Continuous Training">
   <img
-    src="Items/metaplastic.png"
+    src="items/metaplastic.png"
     alt="Figure 1 of Metaplastic-EEG"
     class="news-thumb"
   />
@@ -1203,10 +1229,32 @@ function initNewsImageLayout() {
       img.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
-        incrementView(img);
         openImageLightbox(img.src, img.alt);
       });
       img.dataset.zoomBound = '1';
+    }
+  });
+}
+
+function moveHeartsToDateRow() {
+  document.querySelectorAll('#news .news-item').forEach(card => {
+    const content = card.querySelector('.news-content');
+    const timeEl = content?.querySelector('time');
+    const heartEl = card.querySelector('.heart');
+    if (!content || !timeEl || !heartEl) return;
+
+    let metaRow = content.querySelector('.news-meta-row');
+    if (!metaRow) {
+      metaRow = document.createElement('div');
+      metaRow.className = 'news-meta-row';
+      content.insertBefore(metaRow, timeEl);
+    }
+
+    if (!metaRow.contains(timeEl)) {
+      metaRow.appendChild(timeEl);
+    }
+    if (!metaRow.contains(heartEl)) {
+      metaRow.appendChild(heartEl);
     }
   });
 }
@@ -1281,12 +1329,11 @@ function renderLatestNewsSummary() {
 showSection('home');
 sortNewsByDate();
 initNewsImageLayout();
+moveHeartsToDateRow();
 renderLatestNewsSummary();
 
 const LIKES_KEY = 'newsLikesState';
-const VIEWS_KEY = 'newsViewsState';
 let likesState = {};
-let viewsState = {};
 
 function loadState(key) {
   try {
@@ -1320,7 +1367,6 @@ function applyEngagementState() {
     const articleId = getArticleId(article);
     const heart = article.querySelector('.heart');
     const likeCount = article.querySelector('.like-count');
-    const viewCount = article.querySelector('.view-count');
     const liked = Boolean(likesState[articleId]);
 
     if (heart) {
@@ -1328,9 +1374,6 @@ function applyEngagementState() {
     }
     if (likeCount) {
       likeCount.textContent = liked ? 1 : 0;
-    }
-    if (viewCount) {
-      viewCount.textContent = Number(viewsState[articleId] || 0);
     }
   });
 }
@@ -1352,41 +1395,12 @@ function toggleLike(el) {
   saveState(LIKES_KEY, likesState);
 }
 
-function incrementView(el) {
-  const article = el.closest('.news-item');
-  if (!article) return;
-
-  const articleId = getArticleId(article);
-  const current = Number(viewsState[articleId] || 0);
-  const next = current + 1;
-  viewsState[articleId] = next;
-
-  const viewSpan = article.querySelector('.view-count');
-  if (viewSpan) {
-    viewSpan.textContent = next;
-  }
-
-  saveState(VIEWS_KEY, viewsState);
-}
-
-function initFallbackViewTriggers() {
-  document.querySelectorAll('.news-item').forEach(article => {
-    const hasTitleLink = Boolean(article.querySelector('.news-content h3 a'));
-    if (hasTitleLink) return;
-
-    article.style.cursor = 'pointer';
-    article.addEventListener('click', event => {
-      if (event.target.closest('.heart')) return;
-      if (event.target.closest('a')) return;
-      incrementView(article);
-    });
-  });
+function incrementView() {
+  // Views are intentionally disabled.
 }
 
 likesState = loadState(LIKES_KEY);
-viewsState = loadState(VIEWS_KEY);
 applyEngagementState();
-initFallbackViewTriggers();
   </script>
           
 </body>
