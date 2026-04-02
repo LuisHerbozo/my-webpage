@@ -53,6 +53,12 @@
     .section {
       margin-top: 30px;
     }
+    #home.section {
+      margin-top: 10px;
+    }
+    #news.section {
+      margin-top: 8px;
+    }
     .hidden {
       display: none;
     }
@@ -69,6 +75,9 @@
     }
     .right {
       flex: 2 1 600px;
+    }
+    .right h2 {
+      margin-top: 0;
     }
     .profile-pic {
       width: 250px;
@@ -115,28 +124,48 @@
       content: "• ";
       color: #2bbbad;
     }
-
+    .latest-news-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .latest-news-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border: 1px solid #dfeeea;
+      border-left: 4px solid #2bbbad;
+      border-radius: 8px;
+      background: #f8fcfb;
+    }
+    .latest-news-item:last-child {
+      margin-bottom: 0;
+    }
+    .latest-news-date {
+      font-size: 0.82rem;
+      color: #666;
+      white-space: nowrap;
+      margin-left: auto;
+      margin-top: 2px;
+    }
+    .latest-news-title {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      flex: 1;
+    }
+    .latest-news-title a {
+      color: #222;
+      text-decoration: none;
+    }
+    .latest-news-title a:hover {
+      color: #2bbbad;
+      text-decoration: underline;
+    }
     /* ===== News ===== */
-/* News Section (append to your CSS) */
-.news-search {
-  position: relative;
-  max-width: 400px;
-  margin-bottom: 1.5rem;
-}
-.news-search input[type="search"] {
-  width: 100%;
-  padding: 0.6rem 2.5rem 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.news-search .fa-search {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-}
 /* .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -161,11 +190,13 @@
 } */
   .news-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+  align-items: start;
+  align-content: start;
   width: 100%;
   max-width: 100%;
-  padding: 20px;
+  padding: 6px 20px 20px;
   box-sizing: border-box;
 }
 
@@ -176,12 +207,79 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  align-self: start;
+}
+.news-item--text-only {
+  grid-column: 1 / -1;
+}
+.news-item--text-compact {
+  grid-column: auto;
+}
+.news-item--portrait {
+  grid-column: auto;
+}
+.news-item--text-only .news-content {
+  padding: 20px 18px 14px;
+}
+.news-item--text-compact .news-content {
+  padding: 20px 18px 14px;
+}
+.news-item--text-only .news-content h3 {
+  margin-top: 0.1rem;
+}
+.news-item--text-compact .news-content h3 {
+  margin-top: 0.1rem;
+}
+
+@media (max-width: 900px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
 }
 
 .news-thumb {
+  display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
+  max-height: 760px;
+  object-fit: contain;
+  background: #f5f5f5;
+  cursor: zoom-in;
+}
+.news-item--landscape .news-thumb {
+  aspect-ratio: 16 / 9;
+  max-height: none;
+}
+.news-item--portrait .news-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  object-fit: contain;
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  cursor: zoom-out;
+}
+.image-lightbox.open {
+  display: flex;
+}
+.image-lightbox img {
+  max-width: min(1200px, 95vw);
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .news-content {
@@ -300,6 +398,26 @@
 .heart.liked {
   color: #d32f2f;
 }
+.cv-actions {
+  margin: 0 0 8px 0;
+  text-align: right;
+}
+.cv-link {
+  color: #2bbbad;
+  text-decoration: none;
+  font-weight: 600;
+}
+.cv-link:hover {
+  text-decoration: underline;
+}
+.cv-viewer {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 140px);
+  min-height: 820px;
+  border: none;
+  border-radius: 0;
+}
   </style>
 </head>
   
@@ -312,7 +430,7 @@
 <!--       <a onclick="showSection('skills')">Skills</a> -->
 <!--       <a onclick="showSection('projects')">Projects</a> -->
       <a onclick="showSection('publications')">Publications</a>
-      <a onclick="showSection('cv')"> </a>
+      <a onclick="showSection('cv')">CV</a>
     </nav>
   </header>
 
@@ -368,17 +486,14 @@
         <div class="right">
           <h2>About me</h2>
           <p style="text-align: justify;">
-            Hi, I’m <strong>Luis Fernando Herbozo Contreras</strong>, a
-            third-year PhD candidate in Computer and Biomedical Engineering at
-            <a href="#">The University of Sydney</a>. My research focuses on
-            developing low-power, bio-inspired AI algorithms for real-world
-            applications, particularly in healthcare. I'm passionate about
-            advancing edge AI, neuromorphic computing, and privacy-aware
-            machine learning for personalized medical solutions. I hold a
-            Bachelor's in Biomedical Engineering from Tecnologico de Monterrey
-            (ITESM), where I graduated Summa Cum Laude. Outside academia, I
-            enjoy going to exercise, playing the guitar, dancing and
-            learning new skills.
+  Hi, I’m <strong>Luis Fernando Herbozo Contreras</strong>, PhD candidate in Engineering at
+  <a href="https://www.sydney.edu.au/">The University of Sydney</a>, specializing in Biomedical and Computer Engineering.
+  My research focuses on bio-inspired AI for real-world applications, particularly in healthcare,
+  with interests in continual edge AI, neuromorphic computing, and privacy-aware.
+
+  I hold a Bachelor's degree in Biomedical Engineering from
+  <a href="https://tec.mx/es">Tecnológico de Monterrey</a>, where I graduated <em>Summa Cum Laude</em>.
+  Outside academia, I enjoy exercising, tutoring and socializing (Team Beer/Coffee).
           </p>
           <div style="display: flex; gap: 40px; flex-wrap: wrap;">
             <div style="flex: 1.5; min-width: 280px;">
@@ -395,7 +510,7 @@
                   <i class="fas fa-graduation-cap" style="margin-right: 8px; color: #444;"></i>
                   <strong>Bachelor of Biomedical Engineering</strong><br />
                   Tecnologico de Monterrey (ITESM)<br />
-                  Magna Cum Laude, Honors<br />
+                  Summa Cum Laude, Honors<br />
                   <em>Jan 2017 – Jun 2022</em>
                 </p>
               </div>
@@ -404,13 +519,22 @@
               <div class="section-block">
                 <h3>Interests</h3>
                 <ul class="plain">
-                  <li>Low-Power Edge Computing</li>
                   <li>Neuromorphic Computing</li>
+                  <li>Continual Edge Computing</li>
                   <li>Privacy and Secure AI</li>
                   <li>Healthcare</li>
+                  <li>Tutoring</li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div class="section-block">
+            <h3>Latest News</h3>
+            <ul id="latestNewsList" class="latest-news-list">
+              <li class="latest-news-item">
+                <p class="latest-news-title">Loading latest titles...</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -419,73 +543,15 @@
 
   <!-- News -->
 <section id="news" class="section hidden">
-  <h2>News</h2>
-
-  <div class="news-search">
-    <input
-      type="search"
-      id="newsSearchInput"
-      placeholder="Search news…"
-      oninput="filterNews()"
-    />
-    <i class="fa fa-search"></i>
-  </div>
-
   <div class="news-grid">
-        <!-- 2025 -->
-    <!-- Card: Liquid-Dendrite SNN -->
-    <article class="news-item" data-title="Best Poster Award">
-      <img
-        src="Items/Best_Poster.jpg"
-        alt="Figure 1 of Liquid-Dendrite SNN"
-        class="news-thumb"
-      />
+    <!-- 2026 -->
+    <article class="news-item news-item--text-only" data-title="PhD Thesis Submitted">
       <div class="news-content">
-        <time datetime="2025-10-28">Oct 28, 2025</time>
-        <h3>
-          <a
-            href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1"
-            target="_blank"
-            onclick="incrementView(this)"
-          >
-            Best Poster Award by the Faculty of Engineering.
-          </a>
-        </h3>
+        <time datetime="2026-02-27">Feb 27, 2026</time>
+        <h3>PhD Thesis Submitted!</h3>
         <p>
-            Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.        </p>
-      </div>
-      <div class="news-footer">
-  <span class="pub-meta">
-    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
-    <span class="views">👁️ <span class="view-count">0</span></span>
-  </span>
-      </div>
-    </article>
-  
-
-  
-  <div class="news-grid">
-        <!-- 2025 -->
-    <!-- Card: Liquid-Dendrite SNN -->
-    <article class="news-item" data-title="Best Poster Award">
-      <img
-        src="Items/Best_Poster.jpg"
-        alt="Figure 1 of Liquid-Dendrite SNN"
-        class="news-thumb"
-      />
-      <div class="news-content">
-        <time datetime="2025-02-12">Feb 12, 2025</time>
-        <h3>
-          <a
-            href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1"
-            target="_blank"
-            onclick="incrementView(this)"
-          >
-            Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.
-          </a>
-        </h3>
-        <p>
-            Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.        </p>
+          I have officially submitted my PhD thesis in Engineering at The University of Sydney. It's been a long a fruitful journey but I'm grateful for all the skills and knowledge that I acquire. Huge thanks to my supervisor, colleagues and family members who supported me through this beautiful journey! Stay tune for more (:D)
+        </p>
       </div>
       <div class="news-footer">
   <span class="pub-meta">
@@ -496,7 +562,81 @@
     </article>
 
 
-    
+        <!-- 2025 -->
+    <!-- Card: Liquid-Dendrite SNN -->
+    <article class="news-item" data-title="Best Poster Award">
+      <img
+        src="Items/NPJ_Brainchip.jpg"
+        alt="International Conference on Rebooting Computing (ICRC) and NSF Braid Workshop Accepted! See you in San Francisco "
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-12-15">Dec 15, 2025</time>
+        <h3>
+          <a
+            href="https://rebootingcomp.github.io/icrc2025/"
+            target="_blank"
+            onclick="incrementView(this)"
+          >
+            International Conference on Rebooting Computing (ICRC) and NSF Braid Workshop Accepted! See you in San Francisco
+          </a>
+        </h3>
+        <p>
+            See you in San Francisco on December 14-15, 2026   </p>
+      </div>
+      <div class="news-footer">
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+      </div>
+    </article>
+    <!-- Placeholder Card: Recent Achievement 1 -->
+    <article class="news-item" data-title="Recent Achievement Placeholder 1">
+      <img
+        src="Items/PRESS.png"
+        alt="Placeholder image for recent achievement 1"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-10-10">Oct 10, 2025</time>
+        <h3>Best Poster Award for all faculties of Engineering at USYD, organized by PRESS!</h3>
+        <p>
+          Presenting our latest on-device privacy low-power training framework for seizure training and prediction!
+        </p>
+      </div>
+      <div class="news-footer">
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+      </div>
+    </article>
+
+
+        <!-- 2025 -->
+    <!-- Card: Liquid-Dendrite SNN -->
+    <article class="news-item" data-title="Best Poster Award">
+      <img
+        src="Items/Best_Poster.jpg"
+        alt="Figure 1 of Liquid-Dendrite SNN"
+        class="news-thumb"
+      />
+      <div class="news-content">
+        <time datetime="2025-05-30">May 30, 2025</time>
+        <h3>Best Poster Award by the Faculty of Engineering and the USYD IEEE EMBS Chapter.</h3>
+        <p>
+            Presented our latest Liquid and Dendrite Neurons for Edge-Efficient Training        </p>
+      </div>
+      <div class="news-footer">
+  <span class="pub-meta">
+    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
+    <span class="views">👁️ <span class="view-count">0</span></span>
+  </span>
+      </div>
+    </article>
+
+
     
     <!-- 2025 -->
     <!-- Card: Liquid-Dendrite SNN -->
@@ -507,14 +647,14 @@
         class="news-thumb"
       />
       <div class="news-content">
-        <time datetime="2025-02-12">Feb 12, 2025</time>
+        <time datetime="2025-07-31">July 31, 2025</time>
         <h3>
           <a
-            href="https://www.medrxiv.org/content/10.1101/2025.02.09.25321975v1"
+            href="https://iopscience.iop.org/journal/3049-477X"
             target="_blank"
             onclick="incrementView(this)"
           >
-            Liquid‑Dendrite Spiking Neural Network for Edge Seizure Detection
+            Liquid‑Dendrite Spiking Neural Network for Edge Seizure Detection (Now in IOP Machine Health!)
           </a>
         </h3>
         <p>
@@ -543,11 +683,11 @@
         <time datetime="2025-01-30">Jan 30, 2025</time>
         <h3>
           <a
-            href="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1"
+            href="https://iopscience.iop.org/article/10.1088/3049-477X/add26a"
             target="_blank"
             onclick="incrementView(this)"
           >
-            Efficient & Secure μ‑Training and μ‑Fine‑Tuning for TinyML
+            Efficient & Secure μ‑Training and μ‑Fine‑Tuning for TinyML (Now in IOP Machine Health!)
           </a>
         </h3>
         <p>
@@ -575,7 +715,7 @@
           <a href="https://iopscience.iop.org/article/10.1088/2634-4386/adc0b9" 
             onclick="incrementView(this)" 
             target="_blank">
-            Tiny dLIF: a dendritic spiking neural network enabling a time-domain energy-efficient seizure detection system 
+            Tiny dLIF: a dendritic spiking neural network enabling a time-domain energy-efficient seizure detection system (Now in IOP Neuromorphic and Computing Engineering!)
           </a>
         </h3>
         <p>
@@ -601,8 +741,8 @@
       <div class="news-content">
         <time datetime="2025-01-31">Jan 31, 2025</time>
         <h3>
-          <a href="https://iopscience.iop.org/article/10.1088/2632-2153/adaca3" onclick="incrementView(this)" target="_blank">
-            Advancing Privacy‑Aware ML via Continual μ‑Training
+          <a href="https://iopscience.iop.org/article/10.1088/2632-21  53/adaca3" onclick="incrementView(this)" target="_blank">
+            Advancing Privacy‑Aware ML via Continual μ‑Training (Now in IOP Machine Learning: Science and Technology!)
           </a>
         </h3>
         <p>
@@ -632,7 +772,7 @@
             target="_blank"
             onclick="incrementView(this)"
           >
-            KAN–EEG: Seizure Detection without Backbone‑MLP
+            KAN–EEG: towards replacing backbone–MLP for an effective seizure detection system (Now in Royal Society Open Science!)
           </a>
         </h3>
         <p>
@@ -662,7 +802,7 @@
             target="_blank"
             onclick="incrementView(this)"
           >
-            Neuromorphic Neuromodulation for Closed‑Loop Neurostimulation
+            Neuromorphic Neuromodulation for Closed‑Loop Neurostimulation (Now in PNAS Nexus!)
           </a>
         </h3>
         <p>
@@ -712,16 +852,8 @@
         class="news-thumb"
       />
       <div class="news-content">
-        <time datetime="2025-01-30">Jan 30, 2025</time>
-        <h3>
-          <a
-            href="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1"
-            target="_blank"
-            onclick="incrementView(this)"
-          >
-            NeuroEng Workshop at Western Sydney University
-          </a>
-        </h3>
+        <time datetime="2023-11-30">Nov 30, 2023</time>
+        <h3>NeuroEng Workshop at Western Sydney University</h3>
         <p>
         Poster Presentation of Biological Plausible Algorithm for Effective Seizure Detection among experts in the neuromorphic domain such as Tobi Delbruck and Elisa Donati.
         </p>
@@ -745,16 +877,8 @@
         class="news-thumb"
       />
       <div class="news-content">
-        <time datetime="2025-01-30">Jan 30, 2025</time>
-        <h3>
-          <a
-            href="https://www.medrxiv.org/content/10.1101/2025.01.30.25321374v1"
-            target="_blank"
-            onclick="incrementView(this)"
-          >
-            TinyML Conference
-          </a>
-        </h3>
+        <time datetime="2023-11-13">Nov 13,2023</time>
+        <h3>TinyML Conference</h3>
         <p>
           We present our work in Efficient Edge‑AI Models for Robust ECG Abnormality Detection.
         </p>
@@ -789,7 +913,7 @@
             target="_blank"
             onclick="incrementView(this)"
           >
-            Biologically Plausible Algorithm for Seizure Detection
+            Biologically Plausible Algorithm for Seizure Detection (Now in APL Machine Learning!)
           </a>
         </h3>
         <p>
@@ -807,19 +931,19 @@
     <!-- Efficient Edge-AI ECG Models (2024) -->
 <article class="news-item" data-title="Efficient Edge-AI Models for ECG">
   <img
-    src="https://link.springer.com/content/figures/10.1007/s12265-024-10504-y/figures/1"
+    src="items/EdgeNCP.png"
     alt="Figure 1 of Efficient Edge-AI ECG Models"
     class="news-thumb"
   />
   <div class="news-content">
-    <time datetime="2024-04-10">Apr 10, 2024</time>
+    <time datetime="2024-03-12">March 12, 2024</time>
     <h3>
       <a
         href="https://link.springer.com/article/10.1007/s12265-024-10504-y"
         target="_blank"
         onclick="incrementView(this)"
       >
-        Efficient Edge‑AI Models for Robust ECG Abnormality Detection
+        Efficient Edge‑AI Models for Robust ECG Abnormality Detection (Now in Journal of Cardiovascular Translational Research!)
       </a>
     </h3>
     <p>
@@ -834,87 +958,27 @@
   </div>
 </article>
 
-<!-- S4D-ECG Model (2024) -->
-<article class="news-item" data-title="S4D-ECG Model">
-  <img
-    src="https://link.springer.com/article/10.1007/s13239-024-00716-3/figures/1"
-    alt="Figure 1 of S4D-ECG Model"
-    target="_blank"
-    class="news-thumb"
-  />
-  <div class="news-content">
-    <time datetime="2024-03-20">Mar 20, 2024</time>
-    <h3>
-      <a
-        href="https://link.springer.com/article/10.1007/s13239-024-00716-3"
-        target="_blank"
-        onclick="incrementView(this)"
-      >
-        S4D‑ECG: A Shallow State‑of‑the‑Art Model for Cardiac Classification
-      </a>
-    </h3>
-    <p>
-      Introduces S4D‑ECG, combining sparse spiking layers for state‑of‑the‑art ECG classification on edge devices.
-    </p>
-  </div>
-  <div class="news-footer">
-  <span class="pub-meta">
-    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
-    <span class="views">👁️ <span class="view-count">0</span></span>
-  </span>
-  </div>
-</article>
-
-<!-- Abnormality Detection via K-A Networks (medRxiv 2024) -->
-<article class="news-item" data-title="Abnormality Detection in Time-Series Bio-Signals">
-  <img
-    src="https://www.medrxiv.org/content/10.1101/2024.06.04.24308428v1/F1.large.jpg"
-    alt="Figure 1 of Abnormality Detection Paper"
-    class="news-thumb"
-  />
-  <div class="news-content">
-    <time datetime="2024-06-04">Jun 4, 2024</time>
-    <h3>
-      <a
-        href="https://www.medrxiv.org/content/10.1101/2024.06.04.24308428v1"
-        target="_blank"
-        onclick="incrementView(this)"
-      >
-        Abnormality Detection in Time‑Series Bio‑Signals Using K‑A Networks
-      </a>
-    </h3>
-    <p>
-      Uses Kolmogorov–Arnold networks to detect anomalies in time‑series biosignals on resource‑limited hardware.
-    </p>
-  </div>
-  <div class="news-footer">
-  <span class="pub-meta">
-    <span class="heart" onclick="toggleLike(this)">❤️ <span class="like-count">0</span></span>
-    <span class="views">👁️ <span class="view-count">0</span></span>
-  </span>
-  </div>
-</article>
 
 <!-- Metaplastic-EEG (medRxiv 2024) -->
 <article class="news-item" data-title="Metaplastic-EEG: Continuous Training">
   <img
-    src="https://www.medrxiv.org/content/10.1101/2024.05.29.24308178v1/F1.large.jpg"
+    src="items/metaplastic.png"
     alt="Figure 1 of Metaplastic-EEG"
     class="news-thumb"
   />
   <div class="news-content">
-    <time datetime="2024-05-29">May 29, 2024</time>
+    <time datetime="2025-04-21">April 21, 2025</time>
     <h3>
       <a
-        href="https://www.medrxiv.org/content/10.1101/2024.05.29.24308178v1"
+        href="https://www.nature.com/articles/s44335-025-00025-5"
         target="_blank"
         onclick="incrementView(this)"
       >
-        Metaplastic‑EEG: Continuous Training on Brain Signals
+        Metaplastic‑EEG: Continuous Training on Brain Signals (Now in NPJ Unconventional Computing!)
       </a>
     </h3>
     <p>
-      Demonstrates a metaplastic SNN approach for continuous on‑device training with EEG inputs.
+      Demonstrates a metaplastic approach for continuous on‑device training with EEG inputs.
     </p>
   </div>
   <div class="news-footer">
@@ -925,39 +989,6 @@
   </div>
 </article>
 
-<!-- 2023: Generalization Challenges in ECG Deep Learning -->
-<article class="news-item" data-title="Generalization Challenges in ECG Deep Learning">
-  <img
-    src="https://assets.futuremedicine.com/content/dam/futuremedicine/futurecardiology/20/4/figures/futurecardiol-20-4-209-g001.jpg"
-    alt="Figure 1 of Generalization Challenges Paper"
-    class="news-thumb"
-  />
-  <div class="news-content">
-    <time datetime="2024-02-15">Feb 15, 2024</time>
-    <h3>
-      <a
-        href="https://www.futuremedicine.com/doi/full/10.2217/fca-2023-0034"
-        target="_blank"
-        onclick="incrementView(this)"
-      >
-        Generalization Challenges in ECG Deep Learning
-      </a>
-    </h3>
-    <p>
-      Analyzes dataset biases and attention mechanisms affecting ECG DL model generalization.
-    </p>
-  </div>
-  <div class="news-footer">
-  <span class="pub-meta">
-    <span class="heart" onclick="toggleLike(this)">❤️ 
-      <span class="like-count">0</span></span>
-    <span class="views">👁️ <span class="view-count">0</span></span>
-  </span>
-  </div>
-</article>
-
-    <!-- Additional 2024, 2023, etc… -->
-    <!-- Repeat similarly for each publication year, pulling figure1 images when available -->
   </div>
 </section>
 
@@ -1077,8 +1108,16 @@
 
  <!-- CV -->
     <section id="cv" class="section hidden">
-      <h2>Curriculum Vitae</h2>
-      <p>Download Luis' full CV or view academic timeline here.</p>
+      <p class="cv-actions">
+        <a class="cv-link" href="Items/CV_LuisFernandoHerbozoContreras_F.pdf" target="_blank" rel="noopener noreferrer">
+          Open CV in a new tab
+        </a>
+      </p>
+      <iframe
+        class="cv-viewer"
+        src="Items/CV_LuisFernandoHerbozoContreras_F.pdf"
+        title="Luis Herbozo CV PDF viewer"
+      ></iframe>
     </section>
   </div>
 
@@ -1088,94 +1127,268 @@ function showSection(id) {
       document.getElementById(id).classList.remove('hidden');
     }
 
-function filterNews() {
-      const q = document.getElementById('newsSearchInput').value.toLowerCase().trim();
-      document.querySelectorAll('.news-item').forEach(item => {
-        const t = item.dataset.title.toLowerCase();
-        const s = item.querySelector('p').textContent.toLowerCase();
-        item.style.display = t.includes(q) || s.includes(q) ? '' : 'none';
-      });
-    }
-    // Show Home on initial load
-showSection('home');
+function sortNewsByDate() {
+  const grid = document.querySelector('#news .news-grid');
+  if (!grid) return;
 
-function toggleLike(el) {
-  const countSpan = el.querySelector(".like-count");
-  let count = parseInt(countSpan.textContent, 10);
-
-  if (el.classList.contains("liked")) {
-    el.classList.remove("liked");
-    count--;
-  } else {
-    el.classList.add("liked");
-    count++;
-  }
-
-  countSpan.textContent = count;
+  const items = Array.from(grid.querySelectorAll('.news-item'));
+  items
+    .sort((a, b) => {
+      const aDate = Date.parse(a.querySelector('time')?.getAttribute('datetime') || '') || 0;
+      const bDate = Date.parse(b.querySelector('time')?.getAttribute('datetime') || '') || 0;
+      return bDate - aDate;
+    })
+    .forEach(item => grid.appendChild(item));
 }
 
+let imageLightboxEl = null;
+let imageLightboxImg = null;
 
-  // Increment view count once per article per page load
-  const viewedArticles = {};
-  function incrementView(el) {
-    const parent = el.closest('.news-item');
-    const articleId = parent.dataset.title;
+function ensureImageLightbox() {
+  if (imageLightboxEl) return;
 
-    if (!viewedArticles[articleId]) {
-      const viewSpan = parent.querySelector('.view-count');
-      if (viewSpan) {
-        let count = parseInt(viewSpan.textContent, 10) || 0;
-        viewSpan.textContent = ++count;
-      }
-      viewedArticles[articleId] = true;
+  imageLightboxEl = document.createElement('div');
+  imageLightboxEl.className = 'image-lightbox';
+
+  imageLightboxImg = document.createElement('img');
+  imageLightboxImg.alt = 'Expanded news image';
+  imageLightboxEl.appendChild(imageLightboxImg);
+
+  imageLightboxEl.addEventListener('click', () => closeImageLightbox());
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeImageLightbox();
+  });
+
+  document.body.appendChild(imageLightboxEl);
+}
+
+function openImageLightbox(src, alt) {
+  ensureImageLightbox();
+  imageLightboxImg.src = src;
+  imageLightboxImg.alt = alt || 'Expanded news image';
+  imageLightboxEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageLightbox() {
+  if (!imageLightboxEl) return;
+  imageLightboxEl.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function initNewsImageLayout() {
+  document.querySelectorAll('#news .news-item').forEach(card => {
+    if (card.classList.contains('news-item--text-only')) return;
+
+    const img = card.querySelector('.news-thumb');
+    if (!img) return;
+
+    const classify = () => {
+      const width = img.naturalWidth || img.width;
+      const height = img.naturalHeight || img.height;
+      if (!width || !height) return;
+
+      const isPortrait = (height / width) >= 1.25;
+      card.classList.toggle('news-item--portrait', isPortrait);
+      card.classList.toggle('news-item--landscape', !isPortrait);
+    };
+
+    if (img.complete) {
+      classify();
+    } else {
+      img.addEventListener('load', classify, { once: true });
     }
+
+    if (!img.dataset.zoomBound) {
+      img.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        incrementView(img);
+        openImageLightbox(img.src, img.alt);
+      });
+      img.dataset.zoomBound = '1';
+    }
+  });
+}
+
+function renderLatestNewsSummary() {
+  const list = document.getElementById('latestNewsList');
+  if (!list) return;
+
+  const entries = Array.from(document.querySelectorAll('#news .news-item'))
+    .map((item, index) => {
+      const content = item.querySelector('.news-content');
+      const timeEl = content?.querySelector('time');
+      const h3El = content?.querySelector('h3');
+      const linkEl = h3El?.querySelector('a');
+      const datetime = timeEl?.getAttribute('datetime') || '';
+      const dateValue = Date.parse(datetime) || Date.parse(timeEl?.textContent || '') || 0;
+
+      return {
+        index,
+        dateValue,
+        dateLabel: timeEl?.textContent.trim() || '',
+        title: (linkEl?.textContent || h3El?.textContent || item.dataset.title || '').trim(),
+        href: linkEl?.getAttribute('href') || ''
+      };
+    })
+    .filter(entry => entry.title)
+    .sort((a, b) => (b.dateValue - a.dateValue) || (a.index - b.index))
+    .slice(0, 4);
+
+  list.innerHTML = '';
+
+  if (!entries.length) {
+    const li = document.createElement('li');
+    li.className = 'latest-news-item';
+    const msg = document.createElement('p');
+    msg.className = 'latest-news-title';
+    msg.textContent = 'No news items available yet.';
+    li.appendChild(msg);
+    list.appendChild(li);
+    return;
   }
 
+  entries.forEach(entry => {
+    const li = document.createElement('li');
+    li.className = 'latest-news-item';
 
-// function showSection(id) {
-//       document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
-//       document.getElementById(id).classList.remove('hidden');
-//     }
+    const title = document.createElement('p');
+    title.className = 'latest-news-title';
+    if (entry.href && entry.href !== '#') {
+      const a = document.createElement('a');
+      a.href = entry.href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = entry.title;
+      title.appendChild(a);
+    } else {
+      title.textContent = entry.title;
+    }
+    li.appendChild(title);
 
-// function filterNews() {
-//       const q = document.getElementById('newsSearchInput').value.toLowerCase().trim();
-//       document.querySelectorAll('.news-item').forEach(item => {
-//         const t = item.dataset.title.toLowerCase();
-//         const s = item.querySelector('p').textContent.toLowerCase();
-//         item.style.display = t.includes(q) || s.includes(q) ? '' : 'none';
-//       });
-//     }
-//     // Show Home on initial load
-//     showSection('home');
+    if (entry.dateLabel) {
+      const date = document.createElement('span');
+      date.className = 'latest-news-date';
+      date.textContent = entry.dateLabel;
+      li.appendChild(date);
+    }
 
-// function toggleLike(el) {
-//   const countSpan = el.querySelector(".like-count");
-//   let count = parseInt(countSpan.textContent, 10);
+    list.appendChild(li);
+  });
+}
+    // Show Home on initial load
+showSection('home');
+sortNewsByDate();
+initNewsImageLayout();
+renderLatestNewsSummary();
 
-//   if (el.classList.contains("liked")) {
-//     el.classList.remove("liked");
-//     count--;
-//   } else {
-//     el.classList.add("liked");
-//     count++;
-//   }
+const LIKES_KEY = 'newsLikesState';
+const VIEWS_KEY = 'newsViewsState';
+let likesState = {};
+let viewsState = {};
 
-//   countSpan.textContent = count;
-// }
+function loadState(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key)) || {};
+  } catch (e) {
+    return {};
+  }
+}
 
-// function incrementView(linkEl) {
-//   const parent = linkEl.parentElement;
-//   const viewSpan = parent.querySelector(".view-count");
-//   let count = parseInt(viewSpan.textContent, 10);
-//   count++;
-//   viewSpan.textContent = count;
-// }
+function saveState(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    // Ignore storage errors so the page keeps working.
+  }
+}
 
-// // ensure clicking the link also increments views (Check if this is neccesary)
-// document.querySelectorAll(".news-content a").forEach(a =>
-//   a.addEventListener("click", () => incrementView(a))
-// );
+function getArticleId(article) {
+  if (!article.dataset.articleId) {
+    const allArticles = Array.from(document.querySelectorAll('.news-item'));
+    const index = allArticles.indexOf(article);
+    const title = (article.dataset.title || 'article').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const date = article.querySelector('time')?.getAttribute('datetime') || 'no-date';
+    article.dataset.articleId = `${title}-${date}-${index}`;
+  }
+  return article.dataset.articleId;
+}
+
+function applyEngagementState() {
+  document.querySelectorAll('.news-item').forEach(article => {
+    const articleId = getArticleId(article);
+    const heart = article.querySelector('.heart');
+    const likeCount = article.querySelector('.like-count');
+    const viewCount = article.querySelector('.view-count');
+    const liked = Boolean(likesState[articleId]);
+
+    if (heart) {
+      heart.classList.toggle('liked', liked);
+    }
+    if (likeCount) {
+      likeCount.textContent = liked ? 1 : 0;
+    }
+    if (viewCount) {
+      viewCount.textContent = Number(viewsState[articleId] || 0);
+    }
+  });
+}
+
+function toggleLike(el) {
+  const article = el.closest('.news-item');
+  if (!article) return;
+
+  const articleId = getArticleId(article);
+  const nextLiked = !likesState[articleId];
+  likesState[articleId] = nextLiked;
+
+  el.classList.toggle('liked', nextLiked);
+  const countSpan = el.querySelector('.like-count');
+  if (countSpan) {
+    countSpan.textContent = nextLiked ? 1 : 0;
+  }
+
+  saveState(LIKES_KEY, likesState);
+}
+
+function incrementView(el) {
+  const article = el.closest('.news-item');
+  if (!article) return;
+
+  const articleId = getArticleId(article);
+  const current = Number(viewsState[articleId] || 0);
+  const next = current + 1;
+  viewsState[articleId] = next;
+
+  const viewSpan = article.querySelector('.view-count');
+  if (viewSpan) {
+    viewSpan.textContent = next;
+  }
+
+  saveState(VIEWS_KEY, viewsState);
+}
+
+function initFallbackViewTriggers() {
+  document.querySelectorAll('.news-item').forEach(article => {
+    const hasTitleLink = Boolean(article.querySelector('.news-content h3 a'));
+    if (hasTitleLink) return;
+
+    article.style.cursor = 'pointer';
+    article.addEventListener('click', event => {
+      if (event.target.closest('.heart')) return;
+      if (event.target.closest('a')) return;
+      incrementView(article);
+    });
+  });
+}
+
+likesState = loadState(LIKES_KEY);
+viewsState = loadState(VIEWS_KEY);
+applyEngagementState();
+initFallbackViewTriggers();
   </script>
           
 </body>
 </html>
+
